@@ -75,4 +75,36 @@ coroutines because its several benefits:
   sections. Everything runs on the same thread, so it is easier to design your
   code.
 
+Well, its enough for now. Let's start working.
 
+## Setting things up
+
+Let's setup our development environment. You will need the following software:
+
+- GIT, for source control;
+
+- Swift compiler and command line tools.
+
+### Installing for macOS
+
+If you use a macOS, swift compiler and command line tools are bundled with
+Xcode. However, it is a good idea start with `swiftenv`, a very simple command
+line tool that helps you maintain several version of swift installed on your
+machine.
+
+In order to install _swiftenv_, you can use _homebrew_ package manager as follows:
+
+`brew install kylef/formulae/swiftenv`
+
+After installing _swiftenv_ you can then install swift like this (as of this
+writting, swift is in version 3.0.2):
+
+`swiftenv install 3.0.2`
+
+In order to check if you've got the correct version, check your swift:
+
+`swift --version`
+
+### Installing for Linux
+
+**TODO**: Add precise instructions for linux installations
