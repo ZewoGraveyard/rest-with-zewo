@@ -61,7 +61,7 @@ usually you don’t mind about it and make your code as much parallel as possibl
 in order to minimize synchronizations and locks, which is a pain in parallel
 code.
 
-At short: concurrent is when you *take care* of a lot of things at once, and
+In short: concurrent is when you *take care* of a lot of things at once, and
 parallel is when you *do* a lot of things at once. Zewo team preferred to use
 coroutines because its several benefits:
 
