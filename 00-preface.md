@@ -47,3 +47,26 @@ Zewo and help you write quality server-side code.
 So, let’s begin!
 
 Ronaldo
+
+# How to read this book
+
+This book was written as a tutorial, a step-by-step text which introduces
+concepts as they are necessary. So, it was intended to be a book where you
+should read from start to end. It is not a reference book, though. You should
+have the patience to get into it as we travel through each concept and
+functionality of Zewo amazing modules.
+
+## Pre-requisites
+
+This book starts from the premise that you know Apple's Swift language. If you
+don't know swift, nor programming, it is a good idea to learn Swift language
+first before going on.
+
+To run the examples presented in this book you will need a linux or a macOS
+box. Familiarity with command line is not required, but it is good to be
+familiar with shell commands.
+
+
+
+
+
