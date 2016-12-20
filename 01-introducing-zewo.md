@@ -96,15 +96,50 @@ In order to install _swiftenv_, you can use _homebrew_ package manager as follow
 
 `brew install kylef/formulae/swiftenv`
 
-After installing _swiftenv_ you can then install swift like this (as of this
-writting, swift is in version 3.0.2):
+### Installing for Linux
+
+_swiftenv_ is a set of shell scripts. Therefore, installing on linux is pretty
+straightforward. It is a manual process, but simple enough to accomplish in a
+few minutes.
+
+First, you need to download the set of shell scrits. You do it by using _git_:
+
+`git clone https://github.com/kylef/swiftenv.git ~/.swiftenv`
+
+_swiftenv_ shell scripts need to be installed as instructed. They need the
+_.swiftenv_ directory to be created and be located on your home folder.
+
+Once you have installed it, it is time to configure. All you need to do is to
+add a few lines to your .profile or .bash_profile. You will need to check which
+startup file your shell loads at startup in order to set your environment. Some
+linux distros have different ways to accomplish it. So, stick with your distro's
+documentation in order to do it.
+
+Well, that said, here is what you need to do in your _.profile_ or
+`.bash_profile`. This examploe is assuming you have .bash_profile.
+
+```
+echo 'export SWIFTENV_ROOT="$HOME/.swiftenv"' >> ~/.bash_profile
+$ echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+$ echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile
+```
+
+That's it. 
+
+### Installing swift with swiftenv
+
+All you need to do is to execute the following command line. As of its writting,
+the current version of swift is 3.0.2.
 
 `swiftenv install 3.0.2`
 
-In order to check if you've got the correct version, check your swift:
+After installing, check if it is working:
 
 `swift --version`
 
-### Installing for Linux
+You should see something like this (this is an output from a macOS system):
 
-**TODO**: Add precise instructions for linux installations
+`Apple Swift version 3.0.2 (swiftlang-800.0.63 clang-800.0.42.1)
+Target: x86_64-apple-macosx10.9`
+
+So far, so good. 
