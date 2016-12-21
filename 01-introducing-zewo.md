@@ -290,6 +290,8 @@ enough for now.
 
 This is what we have accomplished so far:
 
+- Learn how to install swiftenv and swift command line tools
+
 - Understand the basics on swift packager
 
 - Learn how to create a basic Zewo project
