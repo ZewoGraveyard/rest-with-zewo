@@ -274,5 +274,30 @@ directory and do the following:
 
 `swift build`
 
+All built artefacts will be placed in a hidden folder called `.build`. By
+default, this command will build your project in debug mode. The executable will
+be placed in `.build/debug` folder.
+
+So, if everything ran smoothly, let's run our built project:
+
+`.build/debug/ZewoSample`
+
+This example don't do much. It will say _Hello, world!_ if you access
+`http://localhost:8080/hello` in your browser. It is not that much. But its
+enough for now.
+
+## Accomplishments
+
+This is what we have accomplished so far:
+
+- Understand the basics on swift packager
+
+- Learn how to create a basic Zewo project
+
+- Learn how to run a project
+
+## What's next
+
+We will dig deeper into how to create our entry points on our REST server.
 
 
