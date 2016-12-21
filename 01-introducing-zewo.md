@@ -118,7 +118,7 @@ documentation in order to do it.
 Well, that said, here is what you need to do in your _.profile_ or
 `.bash_profile`. This example is assuming you have .bash_profile.
 
-```
+```bash
 echo 'export SWIFTENV_ROOT="$HOME/.swiftenv"' >> ~/.bash_profile
 echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile
@@ -153,7 +153,7 @@ First, we need to create a new software package using swift packager. In order
 to do so, open a terminal and create a directory. Assuming that you have _bash_
 as your shell, it may look like this:
 
-```
+```bash
 $ mkdir ZewoSample
 $ cd ZewoSample
 $ swift package init --type executable
@@ -180,7 +180,7 @@ nice software called `ZewoSample`, nothing else.
 Now it is time to tell swift packager about Zewo. After editing your
 _Package.swift_ file may look like this:
 
-```
+```swift
 import PackageDescription
 
 let package = Package(
