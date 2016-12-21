@@ -18,6 +18,8 @@ way to accomplish multi-tasking without being preemptive. It means that a
 routine is capable to stop its execution at certain points, and resuming later
 at the point it was stopped.
 
+## Coroutines
+
 Coroutine is a very important concept in Zewo and it is important to understand
 its consequences in order to fully take advantage of it. A coroutine is also
 known as green threads. But, unlike a common thread, a coroutine is not
@@ -75,15 +77,30 @@ coroutines because its several benefits:
   sections. Everything runs on the same thread, so it is easier to design your
   code.
 
-Well, its enough for now. Let's start working.
+- You standardize communications between coroutines by using channels. A channel
+  is a very powerful tool that let you exchange data between coroutines easily
+  and reliably.
+
+Well, its enough for now. Let's start doing some work.
 
 ## Setting things up
 
 Let's setup our development environment. You will need the following software:
 
-- GIT, for source control;
+- GIT, for source control and package management. Nowadays, every single
+  developer uses it. But it is good to remind you to get it, if you don't
+  already have it.
 
-- Swift compiler and command line tools.
+- Swift compiler and command line tools;
+
+- Swiftenv, a very interesting tool to manage different versions of swift;
+
+- A command line like _bash_ or _zsh_. This comes bundled with your operating
+system.
+
+You can find detailed information on both Swift official web site and in
+swiftenv web site. Refer to the end of this chapter in order to see the
+referenced sites.
 
 ### Installing for macOS
 
@@ -146,8 +163,8 @@ So far, so good.
 
 ## Our first Zewo program
 
-Zewo is designed to be distributed using swift package manager. So, lets startup
-creating a sample program in order to have a simple startup.
+Zewo is designed to be distributed using swift package manager. So, lets start
+up creating a sample program in order to have a simple start.
 
 First, we need to create a new software package using swift packager. In order
 to do so, open a terminal and create a directory. Assuming that you have _bash_
@@ -161,8 +178,33 @@ $ swift package init --type executable
 
 The command `swift package init --type executable` will create a skelleton for
 an application. It creates a standard directory structure to hold both your code
-and your automated tests. Also, it creates a file called `Package.swift` which
-contains information about your application. Let's take a look at it.
+and your automated tests.
+
+Swift package will scaffold the following directory structure (or very similar
+to it):
+
+```
+ZewoSample
+|
++--Packages
++--Sources
++--Tests
+```
+
+Just for briefing, this is a standard structure where:
+
+- **Packages** is where swift packager will store dependencies.
+
+- **Sources** is where you put your source code.
+
+- **Tests** is where you put automated tests.
+
+If you need more details on how the swift packager work, please refer to the
+reference links at the end of this chapter for detailed information.
+
+So, the scaffolding will create, besides the directory structure, a file called
+`Package.swift` which contains information about your application. Let's take a
+look at it. 
 
 ```swift
 import PackageDescription
@@ -173,11 +215,11 @@ let package = Package(
 ```
 
 This configuration file is no different from any other swift source code. It
-creates a package, which is an object that describes your software. Up to this,
-you said nothing about Zewo. You just said to swift packager that you have a
-nice software called `ZewoSample`, nothing else.
+creates a package, which is an object that describe your software. Besides it,
+we said nothing about Zewo. You just said to swift packager that you have a nice
+software called `ZewoSample`, nothing else.
 
-Now it is time to tell swift packager about Zewo. After editing your
+Now it is time to tell swift packager about Zewo. After editing, your
 _Package.swift_ file may look like this:
 
 ```swift
@@ -197,5 +239,40 @@ its dependencies:
 `swift package fetch`
 
 Time to get a cup of coffee.
+
+After a comfortable hot cup of coffee, it is time to add some
+functionality. There is nothing on our example. We haven't written any useful
+line of code. So, let's write something. This piece of code you can find on
+Zewo's github README and it is worth, for now, as our first example on the
+subject.
+
+On the source tree created by swift packager, you will find a directory called
+_Source_ where you should store your source code. At this directory you will
+find a file called _main.swift_. Edit it. After your editions, it will look like
+this:
+
+```swift
+import HTTPServer
+
+let log = LogMiddleware()
+
+let router = BasicRouter { route in
+    route.get("/hello") { request in
+        return Response(body: "Hello, world!")
+    }
+}
+
+let server = try Server(port: 8080, middleware: [log], responder: router)
+try server.start()
+```
+
+It is important to notice that you must save it as _main.swift_. If you try to
+use another file name, it will not compile.
+
+After doing all needed edits, let's build it. Move yourself to the _ZewoSample_
+directory and do the following:
+
+`swift build`
+
 
 
