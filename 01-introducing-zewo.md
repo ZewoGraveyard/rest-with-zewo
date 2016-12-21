@@ -116,15 +116,15 @@ linux distros have different ways to accomplish it. So, stick with your distro's
 documentation in order to do it.
 
 Well, that said, here is what you need to do in your _.profile_ or
-`.bash_profile`. This examploe is assuming you have .bash_profile.
+`.bash_profile`. This example is assuming you have .bash_profile.
 
 ```
 echo 'export SWIFTENV_ROOT="$HOME/.swiftenv"' >> ~/.bash_profile
-$ echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile
+echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile
 ```
 
-That's it. 
+That's it. Reload your .bash_profile and be happy.
 
 ### Installing swift with swiftenv
 
@@ -143,3 +143,59 @@ You should see something like this (this is an output from a macOS system):
 Target: x86_64-apple-macosx10.9`
 
 So far, so good. 
+
+## Our first Zewo program
+
+Zewo is designed to be distributed using swift package manager. So, lets startup
+creating a sample program in order to have a simple startup.
+
+First, we need to create a new software package using swift packager. In order
+to do so, open a terminal and create a directory. Assuming that you have _bash_
+as your shell, it may look like this:
+
+```
+$ mkdir ZewoSample
+$ cd ZewoSample
+$ swift package init --type executable
+```
+
+The command `swift package init --type executable` will create a skelleton for
+an application. It creates a standard directory structure to hold both your code
+and your automated tests. Also, it creates a file called `Package.swift` which
+contains information about your application. Let's take a look at it.
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "ZewoSample"
+)
+```
+
+This configuration file is no different from any other swift source code. It
+creates a package, which is an object that describes your software. Up to this,
+you said nothing about Zewo. You just said to swift packager that you have a
+nice software called `ZewoSample`, nothing else.
+
+Now it is time to tell swift packager about Zewo. After editing your
+_Package.swift_ file may look like this:
+
+```
+import PackageDescription
+
+let package = Package(
+    name: "ZewoSample",
+    dependencies: [
+        .Package(url: "https://github.com/Zewo/HTTPServer.git", majorVersion: 0, minor: 14),
+    ]
+)
+```
+
+So, get back to the command line and instruct swift packager to download all of
+its dependencies:
+
+`swift package fetch`
+
+Time to get a cup of coffee.
+
+
